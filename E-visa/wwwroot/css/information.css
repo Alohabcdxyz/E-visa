@@ -1,0 +1,324 @@
+
+
+.container .card {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: #fff;
+    border-radius: 0px;
+}
+
+    .container .card .img-box {
+        width: 80px;
+        height: 50px;
+    }
+
+    .container .card img {
+        width: 100%;
+        object-fit: fill;
+    }
+
+    .container .card .number {
+        font-size: 24px;
+    }
+
+.container .card-body .fab.fa-cc-paypal {
+    font-size: 32px;
+    color: #3333f7;
+}
+
+.fab.fa-cc-amex {
+    color: #1c6acf;
+    font-size: 32px;
+}
+
+.fab.fa-cc-mastercard {
+    font-size: 32px;
+    color: red;
+}
+
+.fab.fa-cc-discover {
+    font-size: 32px;
+    color: orange;
+}
+
+.c-green {
+    color: green;
+}
+
+.box {
+    height: 40px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ddd;
+}
+
+.payment {
+    background-color: #1c6acf;
+    color: white;
+    border-radius: 0px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+
+.form__div {
+    height: 50px;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+
+.form__label {
+    position: absolute;
+    left: 16px;
+    top: 10px;
+    background-color: #fff;
+    color: #80868B;
+    font-size: 16px;
+    transition: .3s;
+    text-transform: uppercase;
+}
+
+.form-control:focus + .form__label {
+    top: -8px;
+    left: 12px;
+    color: #1A73E8;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 10;
+}
+
+.form-control:not(:placeholder-shown).form-control:not(:focus) + .form__label {
+    top: -8px;
+    left: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 10;
+}
+
+.form-control:focus {
+    border: 1.5px solid #1A73E8;
+    box-shadow: none;
+}
+
+
+
+.visa-container .visa-personal-infor .imgthumbnail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+    .visa-container .visa-personal-infor .imgthumbnail img {
+        width: 100%;
+    }
+
+.visa-container .visa-personal-infor .img-frontpage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+    .visa-container .visa-personal-infor .img-frontpage img {
+        width: 100%;
+    }
+
+input[type="file"]::file-selector-button {
+    color: white;
+    background-color: #406790;
+}
+
+.hidden {
+    display: none;
+}
+
+h2 {
+    color: #406790;
+}
+
+#form {
+    position: relative;
+    margin-top: 20px
+}
+
+    #form #progressbar {
+        text-align: center;
+    }
+
+    #form fieldset {
+        border: 0 none;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 20px;
+        position: relative
+    }
+
+.finish {
+    text-align: center
+}
+
+#form fieldset:not(:first-of-type) {
+    display: none
+}
+
+#form .previous-step, .next-step {
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right
+}
+
+.form, .previous-step {
+    background: #616161;
+}
+
+.form, .next-step {
+    background: #406790;
+}
+
+#form .previous-step:hover,
+#form .previous-step:focus {
+    background-color: #000000
+}
+
+#form .next-step:hover,
+#form .next-step:focus {
+    background-color: #406790
+}
+
+.text {
+    color: #406790;
+    font-weight: normal
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+    #progressbar .active {
+        color: #406790
+    }
+
+    #progressbar li {
+        list-style-type: none;
+        font-size: 15px;
+        width: 25%;
+        float: left;
+        position: relative;
+        font-weight: 400
+    }
+
+    #progressbar #step1:before {
+        content: "1"
+    }
+
+    #progressbar #step2:before {
+        content: "2"
+    }
+
+    #progressbar #step3:before {
+        content: "3"
+    }
+
+    #progressbar #step4:before {
+        content: "4"
+    }
+
+    #progressbar li:before {
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        display: block;
+        font-size: 20px;
+        color: #ffffff;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+        background: lightgray;
+        padding: 2px
+    }
+
+    #progressbar li:after {
+        content: '';
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        background: lightgray;
+        left: 0;
+        top: 25px;
+        z-index: -1
+    }
+
+    #progressbar li.active:before,
+    #progressbar li.active:after {
+        background: #406790
+    }
+
+
+
+.register .api-login {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px
+}
+
+    .register .api-login .fb {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .register .api-login .fb:hover {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .register .api-login .fb img {
+            width: 60px;
+            cursor: pointer;
+        }
+
+.line {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    margin-top: 25px;
+    text-align: center
+}
+
+    .line h3 {
+        font-size: 15px;
+        text-align: center;
+        position: relative;
+        top: 17px;
+        padding: 0 15px;
+        display: inline-block;
+        background: white
+    }

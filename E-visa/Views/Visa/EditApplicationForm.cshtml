@@ -1,0 +1,571 @@
+﻿@model E_Visa.Models.EvisaForm
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<div class="visa-container">
+    <div style="padding: 0 20px 0 20px;">
+        <form id="VisaSubmitForm" asp-controller="Visa" asp-action="EditApplicationForm" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="visa-personal-infor">
+                <div class="row">
+                    <div class="col-12 infor-banner" style="height: 40px; width: 100%; background: #406790; color: white; line-height: 40px; padding-left: 25px; margin-bottom: 20px;">
+                        Personal Information
+                    </div>
+                    <div class="col-6">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label asp-for="PortraitFormat" class="form-label"></label>
+                                <div class="imgthumbnail">
+                                    <img id="portraitImagePreview" src="data:image/jpeg;base64,@(Model.PortraitFormat)" style="height: 170px" />
+                                </div>
+@*                                  <input asp-for="PortraitFormat" type="file" accept="image/png, image/jpeg" onchange="previewImage(this, 'portraitImagePreview');" /> *@
+                            </div>
+
+                            <div class="col-md-6 offset-md-3">
+                                <label asp-for="PassportFrontPage" class="form-label"></label>
+                                <div class="img-frontpage">
+                                    <img id="frontpageImagePreview" src="data:image/jpeg;base64,@(Model.PassportFrontPage)" style="height: 170px" />
+                                </div>
+                               @*  <input asp-for="PassportFrontPage" type="file" accept="image/png, image/jpeg" onchange="previewImage(this, 'frontpageImagePreview');" /> *@
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="VisaType" class="form-label"></label> <strong style="color: red">*</strong>
+                                <select asp-for="VisaType" asp-items="Html.GetEnumSelectList<VisaType>()" class="form-select" aria-label="Default select example">
+                                    <option value="">Select Visa Type</option>
+                                </select>
+                                <span asp-validation-for="VisaType" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="SurName" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input type="text" asp-for="SurName" class="form-control" placeholder="Surname">
+                                <span asp-validation-for="SurName" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="GivenName" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input type="text" asp-for="GivenName" class="form-control" placeholder="Given Name">
+                                <span asp-validation-for="GivenName" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="Gender" class="form-label"></label> <strong style="color: red">*</strong>
+                                <div class="row">
+                                   <div class="col-4">
+                                        <div>
+                                            <input type="radio" asp-for="Gender" value="Male" >
+                                            <label class="form-check-label" for="Gender">
+                                                Male
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <input type="radio" asp-for="Gender" value="Female">
+                                            <label class="form-check-label" for="Gender">
+                                                Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="DateOfBirth" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input id="date-of-birth" class="form-control" asp-for="DateOfBirth" name="DateOfBirth" placeholder="dd/mm/yyyy" />
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="PlaceOfBirth" class="form-label"></label>
+                                <input type="text" asp-for="PlaceOfBirth" class="form-control" placeholder="Place of Birth">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="Nationality" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="Nationality" type="text" class="form-control" id="" placeholder="Current nationality">
+                                <span asp-validation-for="Nationality" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="ResidentialAddress" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="ResidentialAddress" type="text" class="form-control" id="" placeholder="Permanent residential address">
+                                <span asp-validation-for="ResidentialAddress" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="PhoneNumber" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="PhoneNumber" type="text" class="form-control" id="" placeholder="Phone Number">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="Email" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="Email" type="text" class="form-control" id="" placeholder="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="Religion" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="Religion" type="text" class="form-control" id="" placeholder="Religion ">
+                                <span asp-validation-for="Religion" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="Occupation" class="form-label"></label>
+                                <input asp-for="Occupation" type="text" class="form-control" id="" placeholder="Occupation">
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="OccupationCompanyName" class="form-label"></label>
+                                <input asp-for="OccupationCompanyName" type="text" class="form-control" id="" placeholder="Name of working company/School">
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="OccupationCompanyAddress" class="form-label">Occupation/School/College Address</label>
+                                <input asp-for="OccupationCompanyAddress" type="text" class="form-control" id="" placeholder="Occupation/School/College Address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visa-passport-infor">
+                <div class="row">
+                    <div class="col-12 infor-banner" style="height: 40px; width: 100%; background: #406790; color: white; line-height: 40px; padding-left: 25px; margin: 40px 0 20px 0;">
+                        Passport Information
+                    </div>
+                    <div class="col-6">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="PassportNumber" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="PassportNumber" type="text" class="form-control" id="" placeholder="Passport number">
+                                <span asp-validation-for="PassportNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="PlaceIssue" class="form-label"></label>
+                                <input asp-for="PlaceIssue" type="text" class="form-control" id="" placeholder="Place of Issue">
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="PassportIssueDate" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="PassportIssueDate" id="passport-issue-date" class="form-control" name="PassportIssueDate" placeholder="dd/mm/yyyy" />
+                                <span asp-validation-for="PassportIssueDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="PassportType" class="form-label"></label> <strong style="color: red">*</strong>
+                                <select asp-for="PassportType" asp-items="Html.GetEnumSelectList<PassportType>()" class="form-select" aria-label="Default select example">
+                                    <option value="">Select Passport Type</option>
+                                </select>
+                                <span asp-validation-for="PassportType" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="IntendedArrivalDate" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="IntendedArrivalDate" id="intended-arrival-date" class="form-control" name="IntendedArrivalDate" placeholder="dd/mm/yyyy" />
+                                <span asp-validation-for="IntendedArrivalDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="PassportExpiryDate" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="PassportExpiryDate" id="passport-expiry-date" class="form-control" name="PassportExpiryDate" placeholder="dd/mm/yyyy" />
+                                <span asp-validation-for="PassportExpiryDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visa-more-infor">
+                <div class="row">
+                    <div class="col-12 infor-banner" style="height: 40px; width: 100%; background: #406790; color: white; line-height: 40px; padding-left: 25px; margin: 40px 0 20px 0;">
+                        More Information
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="OtherPassport" class="form-label"></label>
+                        <div class="row" style="margin-bottom: 5px">
+                            <div class="col-2">
+                                <div style="cursor: pointer">
+                                    <input asp-for="OtherPassport" type="radio" name="OtherPassport" id="ValidPassportYes" value="0" onchange="toggleInput('inputField', true)">
+                                    <label class="form-check-label" for="OtherPassport">
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div style="cursor: pointer">
+                                    <input asp-for="OtherPassport" type="radio" name="OtherPassport" id="ValidPassportNo" value="1" onchange="toggleInput('inputField', false)">
+                                    <label class="form-check-label" for="OtherPassport">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row hidden" id="inputField">
+                            <div class="col-12">
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label asp-for="PassportOtherNo" class="form-label"></label> <strong style="color: red">*</strong>
+                                        <input asp-for="PassportOtherNo" type="text" class="form-control" id="" placeholder="Passport No">
+                                        <span asp-validation-for="PassportOtherNo" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="PlaceOtherIssue" class="form-label"></label> <strong style="color: red">*</strong>
+                                        <input asp-for="PlaceOtherIssue" type="text" class="form-control" id="" placeholder="Issuing Authority/Place of issue">
+                                        <span asp-validation-for="PlaceOtherIssue" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="OtherIssueDate" class="form-label"></label> <strong style="color: red">*</strong>
+                                        <input asp-for="OtherIssueDate" id="passport-issue-date-more" class="form-control" name="OtherIssueDate" placeholder="dd/mm/yyyy" />
+                                        <span asp-validation-for="OtherIssueDate" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="OtherIssueExpiryDate" class="form-label"></label> <strong style="color: red">*</strong>
+                                        <input asp-for="OtherIssueExpiryDate" id="passport-expiry-date-more" class="form-control" name="OtherIssueExpiryDate" placeholder="dd/mm/yyyy" />
+                                        <span asp-validation-for="OtherIssueExpiryDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 15px 0 15px 0" />
+                    <div class="col-12">
+                        <label asp-for="BeenToVietNam" class="form-label"></label>
+                        <div class="row" style="margin-bottom: 5px">
+                            <div class="col-2">
+                                <div style="cursor: pointer">
+                                    <input asp-for="BeenToVietNam" type="radio" name="BeenToVietNam" id="DifferentPassportYes" value="0" onchange="toggleInput('inputField1', true)">
+                                    <label class="form-check-label" for="BeenToVietNam">
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div style="cursor: pointer">
+                                    <input asp-for="BeenToVietNam" type="radio" name="BeenToVietNam" id="DifferentPassportNo" value="1" onchange="toggleInput('inputField1', false)">
+                                    <label class="form-check-label" for="BeenToVietNam">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="inputField1" class="row hidden">
+                            <div class="col-12">
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label asp-for="PassportBeenToVietNamNo" class="form-label"></label> <strong style="color: red">*</strong>
+                                        <input asp-for="PassportBeenToVietNamNo" type="text" class="form-control" id="" placeholder="Passport No">
+                                        <span asp-validation-for="PassportBeenToVietNamNo" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="BeenToVietNamFullName" class="form-label"></label> <strong style="color: red">*</strong>
+                                        <input asp-for="BeenToVietNamFullName" type="text" class="form-control" id="" placeholder="Full name">
+                                        <span asp-validation-for="BeenToVietNamFullName" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="BeenToVietNamDateOfBirth" class="form-label"></label> <strong style="color: red">*</strong>
+                                        <input asp-for="BeenToVietNamDateOfBirth" id="date-of-birth-more" class="form-control" name="BeenToVietNamDateOfBirth" placeholder="dd/mm/yyyy" />
+                                        <span asp-validation-for="BeenToVietNamDateOfBirth" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="BeenToVietNamNationality" class="form-label"></label> <strong style="color: red">*</strong>
+                                        <input asp-for="BeenToVietNamNationality" type="text" class="form-control" id="" placeholder="Nationality">
+                                        <span asp-validation-for="BeenToVietNamNationality" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 15px 0 15px 0" />
+                    <div class="col-12">
+                        <label asp-for="MultipleNationality" class="form-label"></label>
+                        <div class="row" style="margin-bottom: 5px">
+                            <div class="col-2">
+                                <div style="cursor: pointer">
+                                    <input asp-for="MultipleNationality" type="radio" name="MultipleNationality" value="0" id="MultipleNationalityYes" onchange="toggleInput('inputField2', true)">
+                                    <label class="form-check-label" for="MultipleNationality">
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div style="cursor: pointer">
+                                    <input asp-for="MultipleNationality" type="radio" name="MultipleNationality" value="1" id="MultipleNationalityNo" onchange="toggleInput('inputField2', false)">
+                                    <label class="form-check-label" for="MultipleNationality">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="inputField2" class="row hidden">
+                            <div class="col-12">
+                                <input asp-for="EnterOtherNationality" type="text" class="form-control" id="" placeholder="Enter Nationality">
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 15px 0 15px 0" />
+                    <div class="col-12">
+                        <label asp-for="VisitedVietNam" class="form-label"></label>
+                        <div class="row" style="margin-bottom: 5px">
+                            <div class="col-2">
+                                <div style="cursor: pointer">
+                                    <input asp-for="VisitedVietNam" type="radio" name="VisitedVietNam" id="BeenToVietNamYes" value="0" onchange="toggleInput('inputField3', true)">
+                                    <label class="form-check-label" for="VisitedVietNam">
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div style="cursor: pointer">
+                                    <input asp-for="VisitedVietNam" type="radio" name="VisitedVietNam" id="BeenToVietNamNo" value="1"  onchange="toggleInput('inputField3', false)">
+                                    <label class="form-check-label" for="VisitedVietNam">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="inputField3" class="row hidden">
+                            <div class="col-12">
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label asp-for="VisitedVietNamFrom" class="form-label">
+                                        </label>
+                                        <input asp-for="VisitedVietNamFrom" id="come-date" class="form-control" name="VisitedVietNamFrom" placeholder="dd/mm/yyyy" />
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="VisitedVietNamTo" class="form-label"></label>
+                                        <input asp-for="VisitedVietNamTo" id="end-date" class="form-control" name="VisitedVietNamTo" placeholder="dd/mm/yyyy" />
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="VisitedVietNamPurpose" class="form-label"></label>
+                                        <input asp-for="VisitedVietNamPurpose" type="text" class="form-control" id="" placeholder="Purpose">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 15px 0 15px 0" />
+                    <div class="col-6">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="LengthOfStay" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="LengthOfStay" type="number" class="form-control" id="" placeholder="Length of stay" min="1">
+                                <span asp-validation-for="LengthOfStay" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="IntendedAddress" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="IntendedAddress" type="text" class="form-control" id="" placeholder="Intended temporary residential address in Viet Nam">
+                                <span asp-validation-for="IntendedAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="PurposeOfVisit" class="form-label"></label> <strong style="color: red">*</strong>
+                                <input asp-for="PurposeOfVisit" type=" text" class="form-control" id="" placeholder="Purpose of visit">
+                                <span asp-validation-for="PurposeOfVisit" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visa-request-infor">
+                <div class="row">
+                    <div class="col-12 infor-banner" style="height: 40px; width: 100%; background: #406790; color: white; line-height: 40px; padding-left: 25px; margin: 40px 0 20px 0;">
+                        Requested information
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="GrantEvisa" class="form-label"></label> <strong style="color: red">*</strong>
+                        <input asp-for="GrantEvisa" id="date-of-birth" class="form-control" name="GrantEvisa" placeholder="dd/mm/yyyy" />
+                        <span asp-validation-for="GrantEvisa" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="GrantEvisaTo" class="form-label"></label> <strong style="color: red">*</strong>
+                        <input asp-for="GrantEvisaTo" id="date-of-birth" class="form-control" name="GrantEvisaTo" placeholder="dd/mm/yyyy" />
+                    </div>
+                    <h6 style="color: red; margin: 20px 0 20px 0">Please make sure to fill correct Checkpoint as per your ticket. Later cannot change your port.</h6>
+                    <div class="col-6">
+                        <label asp-for="EntryGate" class="form-label"></label> <strong style="color: red">*</strong>
+                        <select asp-for="EntryGate" asp-items="Html.GetEnumSelectList<AirportType>()" class="form-select" aria-label="Default select example">
+                            <option value="">Select entry gate</option>
+                        </select>
+                        <span asp-validation-for="EntryGate" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="ExitGate" class="form-label"></label> <strong style="color: red">*</strong>
+                        <select asp-for="ExitGate" asp-items="Html.GetEnumSelectList<AirportType>()" class="form-select" aria-label="Default select example">
+                            <option value="">Select exit gate</option>
+                        </select>
+                        <span asp-validation-for="ExitGate" class="text-danger"></span>
+                    </div>
+                    <h6 style="color: red; margin: 20px 0 20px 0">Your trip to Vietnam Expenses and Insurance Coverage.</h6>
+                    <br />
+                    <div class="col-6">
+                        <label asp-for="IntendedExpenses" class="form-label"></label>
+                        <input asp-for="IntendedExpenses" type="number" class="form-control" id="" placeholder="Intended expenses for your trip" min="1">
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="ExpensesBy" for="" class="form-label"></label>
+                        <select asp-for="ExpensesBy" class="form-select" aria-label="Default select example">
+                            <option value="0">By Applicant</option>
+                            <option value="1">By Organization</option>
+                        </select>
+                    </div>
+                    <div class="col-6" style="margin-top: 10px">
+                        <label asp-for="HealthInsurance" class="form-label">
+                        </label>
+                        <select asp-for="HealthInsurance" class="form-select" name="HealthInsurance" aria-label="Default select example">
+                            <option value="0">Yes</option>
+                            <option value="1">No</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; margin: 20px 0 20px 0; gap: 20px">
+                <a asp-action="DetailsForm" asp-controller="Visa" asp-route-id="@Model.Id" class="btn btn-outline-secondary">
+                    <i class="fa-solid fa-reply"></i> Back
+                </a>
+                <input style="margin: 20px 0 20px 0;" type="submit" value="Save Change" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+@* <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/vn.js"></script> *@
+<script>
+    flatpickr('#date-of-birth', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        // locale: 'vn',
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+    flatpickr('#passport-issue-date', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+    flatpickr('#intended-arrival-date', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+    flatpickr('#passport-expiry-date', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+    flatpickr('#passport-issue-date-more', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+    flatpickr('#passport-expiry-date-more', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+    flatpickr('#date-of-birth-more', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+     flatpickr('#come-date', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+    flatpickr('#end-date', {
+        enableTime: false,
+        dateFormat: 'd/m/Y',
+        time_24hr: false,
+        onChange: function (selectedDates, dateStr, instance) {
+        },
+        disableMobile: 'true'
+    });
+
+    function toggleInput(elementId, show) {
+        var element = document.getElementById(elementId);
+        if (show) {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+
+    function previewImage(input, imgId) {
+        var fileInput = input;
+        var imgElement = document.getElementById(imgId);
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                imgElement.src = e.target.result;
+            }
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+
+     var visitedVietNamValue = @Model.VisitedVietNam;
+    var otherPassport = @Model.OtherPassport;
+    var beenToVietNam = @Model.BeenToVietNam;
+    var multipleNationality = @Model.MultipleNationality;
+
+    if (visitedVietNamValue == 0) {
+        document.getElementById("inputField3").classList.remove("hidden");
+    } else {
+        document.getElementById("inputField3").classList.add("hidden");
+    }
+
+     if (otherPassport == 0) {
+        document.getElementById("inputField").classList.remove("hidden");
+    } else {
+        document.getElementById("inputField").classList.add("hidden");
+    }
+
+     if (beenToVietNam == 0) {
+        document.getElementById("inputField1").classList.remove("hidden");
+    } else {
+        document.getElementById("inputField1").classList.add("hidden");
+    }
+
+     if (multipleNationality == 0) {
+        document.getElementById("inputField2").classList.remove("hidden");
+    } else {
+        document.getElementById("inputField2").classList.add("hidden");
+    }
+</script>

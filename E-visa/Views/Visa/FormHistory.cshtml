@@ -1,0 +1,65 @@
+﻿@model List<E_Visa.Models.EvisaForm>
+<style>
+    .table thead tr th {
+        text-align: center
+    }
+
+    .table tbody tr td {
+        text-align: center
+    }
+</style>
+<h2>Registration Form History</h2>
+
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Surname</th>
+                <th>Given Name</th>
+                <th>Type of Visa</th>
+                <th>Nationality</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var profile in Model)
+            {
+                <tr>
+                    <td>@profile.Id</td>
+                    <td>@profile.SurName</td>
+                    <td>@profile.GivenName</td>
+                    <td>
+                        @switch (profile.VisaType)
+                        {
+                            case VisaType.SingleEntryVisa:
+                                <text>Single entry visa</text>
+                                break;
+                            case VisaType.MultipleEntryVisa:
+                                <text>Multiple entry visa</text>
+                                break;
+                            default:
+                                <text>Không xác định</text>
+                                break;
+                        }
+                    </td>
+                    <td>@profile.Nationality</td>
+                    <td>@profile.Email</td>
+                    <td>@profile.PhoneNumber</td>
+                    <td>
+                        <a asp-action="DetailsForm" asp-controller="Visa" asp-route-id="@profile.Id" class="btn btn-outline-primary btn-sm" title="View details">
+                            <i class="fa-regular fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No registration form available. <a style="text-decoration: none" asp-action="Index" asp-controller="Visa">Click here</a> to register your first form</p>
+}

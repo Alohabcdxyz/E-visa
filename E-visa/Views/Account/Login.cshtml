@@ -1,0 +1,52 @@
+﻿@model E_Visa.Models.LoginVM
+
+<div class="row" >
+    <div class="col-4 offset-2 register">
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for ="UserName" class="form-control">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" asp-for="RememberMe">
+                <label class="form-check-label" asp-for="RememberMe"></label>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input style="width: 100%" type="submit" value="Login" class="btn btn-primary" />
+                <div style="margin-top: 10px">
+                    <a style="text-decoration: none" asp-controller="Account" asp-action="Register"> Don't have account?</a>
+                </div>
+            </div>
+        </form>
+
+        <span class="line">
+            <h3>Or login with</h3>
+        </span>
+        <div class="api-login">
+            <div class="fb">
+                <img src="~/img/fb.png" />
+            </div>
+            <div class="fb">
+                <img src="~/img/gg.png" />
+            </div>
+        </div>
+    </div>
+    <div class="col-4 img-register">
+        <img src="~/img/login.png" />
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

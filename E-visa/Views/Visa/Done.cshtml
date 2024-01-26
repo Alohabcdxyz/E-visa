@@ -1,0 +1,22 @@
+﻿@model E_Visa.Models.EvisaForm
+<div class="finish">
+    <h2 class="text text-center">
+        <strong>FINISHED</strong>
+    </h2>
+    <p>
+        Your application has been successfully completed. A reference number has been sent to your email address.
+    </p>
+    <p>
+        In some cases, e-mail messages may be classified as "junk" or "spam" messages and automatically sent to these folders.
+    </p>
+    <p>
+        If you did not receive the email you requested, please check your spam or record your information as below to check the Payment Status,
+        Resend payment, Edit profile, Print receipt, Approve eVisa application status or Download eVisa certificate before submitting a new request. gica com
+    </p>
+    <p>
+        Dowload receipt: 
+        <a asp-action="PrintForm" asp-controller="Visa" asp-route-id="@Model.Id" target="_blank">
+            Print to Word
+        </a>
+    </p>
+</div>

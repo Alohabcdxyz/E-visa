@@ -1,0 +1,520 @@
+﻿@model E_Visa.Models.EvisaForm
+
+<h2>Form Details</h2>
+<div class="visa-container">
+    <div class="visa-personal-infor">
+        <div class="row">
+            <div class="col-12 infor-banner" style="height: 40px; width: 100%; background: #406790; color: white; line-height: 40px; padding-left: 25px; margin-bottom: 20px;">
+                Personal Information
+            </div>
+            <div class="col-6">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label asp-for="@Model.PortraitFormat" class="form-label"></label>
+                        <div class="imgthumbnail">
+                            <img id="portraitImagePreview" src="data:image/jpeg;base64,@(Model.PortraitFormat)" style="height: 170px" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 offset-md-3">
+                        <label asp-for="@Model.PassportFrontPage" class="form-label"></label>
+                        <div class="img-frontpage">
+                            <img id="frontpageImagePreview" src="data:image/jpeg;base64,@(Model.PassportFrontPage)" style="height: 170px" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="VisaType" class="form-label"></label>
+                        <input type="text" value="@GetEnumText(Model.VisaType)" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="SurName" class="form-label"></label>
+                        <input type="text" value="@Model.SurName" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="GivenName" class="form-label"></label>
+                        <input type="text" value="@Model.GivenName" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Gender" class="form-label"></label>
+                        <input type="text" value="@GetEnumText(Model.Gender)" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="DateOfBirth" class="form-label"></label>
+                        <input id="date-of-birth" class="form-control" value="@Model.DateOfBirth" name="DateOfBirth" readonly />
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="PlaceOfBirth" class="form-label"></label>
+                        <input type="text" value="@Model.PlaceOfBirth" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label asp-for="Nationality" class="form-label"></label>
+                        <input value="@Model.Nationality" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="ResidentialAddress" class="form-label"></label>
+                        <input value="@Model.ResidentialAddress" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="PhoneNumber" class="form-label"></label>
+                        <input value="@Model.PhoneNumber" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input value="@Model.Email" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Religion" class="form-label"></label>
+                        <input value="@Model.Religion" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Occupation" class="form-label"></label>
+                        <input value="@Model.Occupation" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="OccupationCompanyName" class="form-label"></label>
+                        <input value="@Model.OccupationCompanyName" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="OccupationCompanyAddress" class="form-label">Occupation/School/College Address</label>
+                        <input value="@Model.OccupationCompanyAddress" type="text" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="visa-passport-infor">
+        <div class="row">
+            <div class="col-12 infor-banner" style="height: 40px; width: 100%; background: #406790; color: white; line-height: 40px; padding-left: 25px; margin: 40px 0 20px 0;">
+                Passport Information
+            </div>
+            <div class="col-6">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label asp-for="PassportNumber" class="form-label"></label>
+                        <input value="@Model.PassportNumber" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="PlaceIssue" class="form-label"></label>
+                        <input value="@Model.PlaceIssue" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="PassportIssueDate" class="form-label"></label>
+                        <input value="@Model.PassportIssueDate" id="passport-issue-date" class="form-control" name="PassportIssueDate" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label asp-for="PassportType" class="form-label"></label>
+                        <input type="text" value="@GetEnumText(Model.PassportType)" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="IntendedArrivalDate" class="form-label"></label>
+                        <input value="@Model.IntendedArrivalDate" id="intended-arrival-date" class="form-control" name="IntendedArrivalDate" readonly />
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="PassportExpiryDate" class="form-label"></label>
+                        <input value="@Model.PassportExpiryDate" id="passport-expiry-date" class="form-control" name="PassportExpiryDate" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="visa-more-infor">
+        <div class="row">
+            <div class="col-12 infor-banner" style="height: 40px; width: 100%; background: #406790; color: white; line-height: 40px; padding-left: 25px; margin: 40px 0 20px 0;">
+                More Information
+            </div>
+            <div class="col-12">
+                <label asp-for="OtherPassport" class="form-label"></label>
+                <div class="row" style="margin-bottom: 5px">
+                    @if (Model.OtherPassport == 0)
+                    {
+                        <div class="col-2">
+                            <div>
+                                <input type="radio"  checked>
+                                <label class="form-check-label">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+                    }
+                    else if (Model.OtherPassport == 1)
+                    {
+                        <div class="col-2">
+                            <div>
+                                <input type="radio" checked>
+                                <label class="form-check-label">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    }
+                </div>
+           
+                <div class="row hidden" id="inputField">
+                    <div class="col-12">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="PassportOtherNo" class="form-label"></label>
+                                <input asp-for="PassportOtherNo" type="text" class="form-control"   readonly>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="PlaceOtherIssue" class="form-label"></label>
+                                <input asp-for="PlaceOtherIssue" type="text" class="form-control" readonly>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="OtherIssueDate" class="form-label"></label>
+                                <input asp-for="OtherIssueDate" id="passport-issue-date-more" class="form-control" name="OtherIssueDate" readonly />
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="OtherIssueExpiryDate" class="form-label"></label>
+                                <input asp-for="OtherIssueExpiryDate" id="passport-expiry-date-more" class="form-control" name="OtherIssueExpiryDate" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin: 15px 0 15px 0" />
+            <div class="col-12">
+                <label asp-for="BeenToVietNam" class="form-label"></label>
+                <div class="row" style="margin-bottom: 5px">
+                    @if (Model.BeenToVietNam == 0)
+                    {
+                        <div class="col-2">
+                            <div>
+                                <input type="radio" checked>
+                                <label class="form-check-label">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+                    }
+                    else if (Model.BeenToVietNam == 1)
+                    {
+                        <div class="col-2">
+                            <div>
+                                <input type="radio" checked>
+                                <label class="form-check-label">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="inputField1" class="row hidden">
+                    <div class="col-12">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="PassportBeenToVietNamNo" class="form-label"></label>
+                                <input asp-for="PassportBeenToVietNamNo" type="text" class="form-control"  readonly>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="BeenToVietNamFullName" class="form-label"></label>
+                                <input asp-for="BeenToVietNamFullName" type="text" class="form-control" id="" readonly>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="BeenToVietNamDateOfBirth" class="form-label"></label>
+                                <input asp-for="BeenToVietNamDateOfBirth" id="date-of-birth-more" class="form-control" name="BeenToVietNamDateOfBirth" readonly />
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="BeenToVietNamNationality" class="form-label"></label>
+                                <input asp-for="BeenToVietNamNationality" type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin: 15px 0 15px 0" />
+            <div class="col-12">
+                <label asp-for="MultipleNationality" class="form-label"></label>
+                <div class="row" style="margin-bottom: 5px">
+                    @if (Model.MultipleNationality == 0)
+                    {
+                        <div class="col-2">
+                            <div>
+                                <input type="radio" checked>
+                                <label class="form-check-label">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+                    }
+                    else if (Model.MultipleNationality == 1)
+                    {
+                        <div class="col-2">
+                            <div>
+                                <input type="radio" checked>
+                                <label class="form-check-label">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="inputField2" class="row hidden">
+                    <div class="col-12">
+                        <input asp-for="EnterOtherNationality" type="text" class="form-control" id="" readonly>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin: 15px 0 15px 0" />
+            <div class="col-12">
+                <label asp-for="VisitedVietNam" class="form-label"></label>
+                <div class="row" style="margin-bottom: 5px">
+                    @if (Model.VisitedVietNam == 0)
+                    {
+                        <div class="col-2">
+                            <div>
+                                <input type="radio" checked>
+                                <label class="form-check-label">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+                    }
+                    else if (Model.VisitedVietNam == 1)
+                    {
+                        <div class="col-2">
+                            <div>
+                                <input type="radio" checked>
+                                <label class="form-check-label">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="inputField3" class="row hidden">
+                    <div class="col-12">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="VisitedVietNamFrom" class="form-label"></label>
+                                <input value="@Model.VisitedVietNamFrom" class="form-control" readonly />
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="VisitedVietNamTo" class="form-label"></label>
+                                <input value="@Model.VisitedVietNamTo" class="form-control" readonly />
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="VisitedVietNamPurpose" class="form-label"></label>
+                                <input value="@Model.VisitedVietNamPurpose" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin: 15px 0 15px 0" />
+            <div class="col-6">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label asp-for="LengthOfStay" class="form-label"></label>
+                        <input value="@Model.LengthOfStay" class="form-control" readonly>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="IntendedAddress" class="form-label"></label>
+                        <input value="@Model.IntendedAddress" type="text" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label asp-for="PurposeOfVisit" class="form-label"></label>
+                        <input value="@Model.PurposeOfVisit" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="visa-request-infor">
+        <div class="row g-3">
+            <div class="col-12 infor-banner" style="height: 40px; width: 100%; background: #406790; color: white; line-height: 40px; padding-left: 25px; margin: 40px 0 20px 0;">
+                Requested information
+            </div>
+            <div class="col-6">
+                <label asp-for="GrantEvisa" class="form-label"></label>
+                <input value="@Model.GrantEvisa" id="date-of-birth" class="form-control" name="GrantEvisa" readonly />
+            </div>
+            <div class="col-6">
+                <label asp-for="GrantEvisaTo" class="form-label"></label>
+                <input value="@Model.GrantEvisaTo" id="date-of-birth" class="form-control" name="GrantEvisaTo" readonly />
+            </div>
+          
+            <div class="col-6">
+                <label asp-for="EntryGate" class="form-label"></label>
+                <input type="text" value="@GetEnumText(Model.EntryGate)" class="form-control" readonly>
+            </div>
+            <div class="col-6">
+                <label asp-for="ExitGate" class="form-label"></label>
+                <input type="text" value="@GetEnumText(Model.ExitGate)" class="form-control" readonly>
+            </div>
+        
+            <br />
+            <div class="col-6">
+                <label asp-for="IntendedExpenses" class="form-label"></label>
+                <input value="@Model.IntendedExpenses" class="form-control" readonly>
+            </div>
+            <div class="col-6">
+                <label asp-for="ExpensesBy" for="" class="form-label"></label>
+                @if (Model.ExpensesBy == 0)
+                {
+                    <input value="By Applicant" class="form-control" readonly>
+                }
+                else if (Model.ExpensesBy == 1)
+                {
+                    <input value="By Organization" class="form-control" readonly>
+                }
+            </div>
+            <div class="col-6" style="margin-top: 10px">
+                <label asp-for="HealthInsurance" class="form-label">
+                </label>
+                @if (Model.HealthInsurance == 0)
+                {
+                    <input value="Yes" class="form-control" readonly>
+                }
+                else if (Model.HealthInsurance == 1)
+                {
+                    <input value="No" class="form-control" readonly>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; margin: 20px 0 20px 0; gap: 20px">
+        <a asp-action="FormHistory" asp-controller="Visa" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-reply"></i> Back
+        </a>
+        <a asp-action="EditApplicationForm" asp-controller="Visa" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+            <i class="fa-solid fa-pencil"></i> Edit
+        </a>
+        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal">
+            <i class="fa-regular fa-trash-can"></i> Delete
+        </button>
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#PaymentModal">
+            <i class="fa-brands fa-cc-visa"></i> Payment
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="DeleteModalLabel">Delete Confirm</h5>
+          </div>
+          <div class="modal-body">
+                Are you sure you want to delete this registration form?
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <a asp-action="Delete" asp-controller="Visa" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+                     Delete
+                </a>
+          </div>
+        </div>
+  </div>
+</div>
+
+<div class="modal fade" id="PaymentModal" tabindex="-1" aria-labelledby="PaymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="PaymentModalLabel">Payment Confirm</h5>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to payment this registration form?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <a asp-action="Payment" asp-route-id="@Model.Id" asp-controller="Visa" class="btn btn-outline-success">
+                    Payment
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    @functions {
+        string GetEnumText<TEnum>(TEnum enumValue) where TEnum : Enum
+        {
+            return Enum.GetName(typeof(TEnum), enumValue) switch
+            {
+                "Male" => "Male",
+                "Female" => "Female",
+                "SingleEntryVisa" => "Single Entry Visa",
+                "MultipleEntryVisa" => "Multiple entry visa",
+                "DiplomaticPassport" => "Diplomatic passport",
+                "OfficialPassport" => "Official passport",
+                "OrdinaryPassport" => "Ordinary passport",
+                "CanThoInternationalAirport" => "Can Tho International Airport",
+                "DaNangInternationalAirport" => "Da Nang International Airport",
+                "NoiBaiInternationalAirport" => "Noi Bai International Airport",
+                "PhuBaiInternationalAirport" => "Phu Bai International Airport",
+                "PhuQuocInternationalAirport" => "Phu Quoc International Airport",
+                "CatBiInternationalAirport" => "Cat Bi International Airport",
+                "TanSonNhatInternationalAirport" => "Tan Son Nhat International Airport",
+                "CamRanhInternationalAirport" => "Cam Ranh International Airport",
+                "NamCanLandport" => "Nam Can Landport",
+                "SongTienLandport" => "Song Tien Landport",
+                "TinhBienLandport" => "Tinh Bien Landport",
+                "XaMatLandport" => "Xa Mat Landport",
+                "MongCaiLandport" => "MongCaiLandport",
+                "MocBaiLandport" => "Moc Bai Landport",
+                "LaoBaoLandport" => "Lao Bao Landport",
+                "HaTienLandport" => "Ha Tien Landport",
+                "HuuNghiLandport" => "Huu Nghi Landport",
+                "CauTreoLandport" => "Cau Treo Landport",
+                "ChaLoLandport" => "Cha Lo Landport",
+                "BoYLandport" => " BoY Landport",
+                "LaoCaiLandport" => "Lao Cai Landport",
+                "SeaportHoChiMinhCity" => "Seaport Ho Chi Minh City",
+                "QuyNhonSeaport" => "Quy Nhon Seaport",
+                "NhaTrangSeaport" => "Nha Trang Seaport",
+                "HaiPhongSeaport" => "Hai Phong Seaport",
+                "HonGaiSeaport" => "Hon GaiS eaport",
+                "DaNangSeaport" => "Da Nang Seaport",
+                "VungTauSeaport" => "Vung Tau Seaport",
+                _ => "Không xác định"
+            };
+        }
+    }
+
+    var visitedVietNamValue = @Model.VisitedVietNam;
+    var otherPassport = @Model.OtherPassport;
+    var beenToVietNam = @Model.BeenToVietNam;
+    var multipleNationality = @Model.MultipleNationality;
+
+    if (visitedVietNamValue == 0) {
+        document.getElementById("inputField3").classList.remove("hidden");
+    } else {
+        document.getElementById("inputField3").classList.add("hidden");
+    }
+
+     if (otherPassport == 0) {
+        document.getElementById("inputField").classList.remove("hidden");
+    } else {
+        document.getElementById("inputField").classList.add("hidden");
+    }
+
+     if (beenToVietNam == 0) {
+        document.getElementById("inputField1").classList.remove("hidden");
+    } else {
+        document.getElementById("inputField1").classList.add("hidden");
+    }
+
+     if (multipleNationality == 0) {
+        document.getElementById("inputField2").classList.remove("hidden");
+    } else {
+        document.getElementById("inputField2").classList.add("hidden");
+    }
+</script>
